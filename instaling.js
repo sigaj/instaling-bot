@@ -124,6 +124,39 @@ function completeAnswer() {
     }
 }
 
+function learningPageShow(id, speechPart, usageExample, translations, word, has_audio, audio_file_name, is_new_word, is_marketing) {
+    $('.speaker').hide();
+    $('#question_speaker').hide();
+    $('#question_speaker').off('click');
+    $('#answer').off('keyup');
+    $('body').off('keyup');
+    $('#answer').off('enterKey');
+    $('.speaker').off('click');
+    $('#check').off('click');
+    $('#show').off('click');
+    $("#new_word_form .big_button").off("click");
+    
+    $('.translations').html(translations);
+    $('.usage_example').html(usageExample);
+    $('.speech_part').html(speechPart);
+    
+    $('#loading').hide();
+    $('.back').show();
+    $('#learning_page').show();
+
+    show_learning_form(id);
+    
+    setAudioEmpty();
+
+    if (currentLanguageId == ORT_LANG_ID && has_audio ) {
+        setAndPlayAudio(id);
+        $("#question_speaker").show();
+        $("#question_speaker").click(function() {
+            playAudio();
+        });
+    }
+}
+
 document.addEventListener('paste', (e) => {
     e.stopImmediatePropagation();
 }, true);
