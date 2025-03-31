@@ -124,38 +124,11 @@ function completeAnswer() {
     }
 }
 
-function learningPageShow(id, speechPart, usageExample, translations, word, has_audio, audio_file_name, is_new_word, is_marketing) {
-    $('.speaker').hide();
-    $('#question_speaker').hide();
-    $('#question_speaker').off('click');
-    $('#answer').off('keyup');
-    $('body').off('keyup');
-    $('#answer').off('enterKey');
-    $('.speaker').off('click');
-    $('#check').off('click');
-    $('#show').off('click');
-    $("#new_word_form .big_button").off("click");
-    
-    $('.translation').html(translations);
-    $('.usage_example').html(usageExample);
-    $('.speech_part').html(speechPart);
-    
-    $('#loading').hide();
-    $('.back').show();
-    $('#learning_page').show();
+const learningPageShowStr = learningPageShow.toString().replace('is_new_word || is_marketing', false);
+learningPageShow = new Function(`return ${learningPageShowStr}`)();
 
-    show_learning_form(id);
-    
-    setAudioEmpty();
-
-    if (currentLanguageId == ORT_LANG_ID && has_audio ) {
-        setAndPlayAudio(id);
-        $("#question_speaker").show();
-        $("#question_speaker").click(function() {
-            playAudio();
-        });
-    }
-}
+const showAnswerPageStr = showAnswerPage.toString().replace('if (grade == 1) {', 'if (grade != 1) {alert(`cos sie OSTRO zjebalo, prosze zglosic to do sigaja ID: ${id}`); throw new Error(); } if (grade == 1) {');
+showAnswerPage = new Function(`return ${showAnswerPageStr}`)();
 
 document.addEventListener('paste', (e) => {
     e.stopImmediatePropagation();
