@@ -136,7 +136,7 @@ function learningPageShow(id, speechPart, usageExample, translations, word, has_
     $('#show').off('click');
     $("#new_word_form .big_button").off("click");
     
-    $('.translations').html(translations);
+    $('.translation').html(translations);
     $('.usage_example').html(usageExample);
     $('.speech_part').html(speechPart);
     
