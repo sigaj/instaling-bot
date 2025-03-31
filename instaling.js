@@ -91,7 +91,7 @@ function getNextWord() {
                             saveWordToLocalStorage(res);
                             answerInput.value = `${res.word}`;
                         } else {
-                            alert(`ACHTUNG BŁĄD! nie znaleziono slowa (${data.id})... zglos tutaj: https://github.com/sigaj/instaling-bot/issues`);
+                            alert(`ACHTUNG BŁĄD! nie znaleziono slowa (${data.id})... prosze zglosic to do sigaja`);
                         }
                     }).catch(error => {
                         alert('Błąd podczas pobierania danych słowa.');
