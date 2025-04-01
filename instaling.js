@@ -46,6 +46,12 @@ function getWordFromLocalStorage(_word) {
     return word;
 }
 
+function deleteWordFromLocalStorage(word_id) {
+    localStorage.setObject('words', localStorage.getObject('words').filter(word => {
+        return (word.id !== word_id);
+    }));
+}
+
 if (!window.location.href.startsWith('https://instaling.pl/ling2/html_app/app.php')) {
     alert('Skrypt musi zostac wykonany na stronie startowej sesji instaling.');
     throw new Error('Skrypt musi zostac wykonany na stronie startowej sesji instaling.');
@@ -127,7 +133,7 @@ function completeAnswer() {
 const learningPageShowStr = learningPageShow.toString().replace('is_new_word || is_marketing', false);
 learningPageShow = new Function(`return ${learningPageShowStr}`)();
 
-const showAnswerPageStr = showAnswerPage.toString().replace('if (grade == 1) {', 'if (grade != 1) {alert(`cos sie OSTRO zjebalo, prosze zglosic to do sigaja ID: ${id}`); throw new Error(); } if (grade == 1) {');
+const showAnswerPageStr = showAnswerPage.toString().replace('if (grade == 1) {', 'if (grade != 1) {alert(`cos sie OSTRO zjebalo, prosze zglosic to do sigaja ID: ${id}`); deleteWordFromLocalStorage(id); } if (grade == 1) {');
 showAnswerPage = new Function(`return ${showAnswerPageStr}`)();
 
 document.addEventListener('paste', (e) => {
