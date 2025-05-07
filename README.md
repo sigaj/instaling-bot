@@ -1,4 +1,4 @@
-Prosty skrypt do automatycznego wykonywania sesji na stronie [instaling.pl](https://instaling.pl).
+Prosty bot do automatycznego rozwiązywania sesji na stronie [instaling.pl](https://instaling.pl).
 
 # Instrukcja używania:
 ## 1. Otwórz konsolę twojej przeglądarki
